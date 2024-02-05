@@ -17,8 +17,8 @@ vim.opt.wrap = false
 vim.opt.scrolloff = 2
 vim.opt.sidescrolloff = 5
 
--- Don't highlight search results
-vim.opt.hlsearch = false
+-- Highlight search results
+vim.opt.hlsearch = true
 
 -- Enable cursorline
 vim.opt.cursorline = true

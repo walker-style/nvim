@@ -43,6 +43,7 @@ lazy.opts = {
 lazy.setup({
   -- Load them from the lua/plugins folder
   {'folke/tokyonight.nvim'},
+  {'folke/neoconf.nvim'},
   {'williamboman/mason.nvim'},
   {'williamboman/mason-lspconfig.nvim'},
   {
@@ -71,6 +72,7 @@ lazy.setup({
 vim.opt.termguicolors = true
 vim.cmd.colorscheme('tokyonight')
 
+require('neoconf').setup({})
 ---
 -- LSP setup
 ---
@@ -88,6 +90,24 @@ require('mason-lspconfig').setup({
     lsp_zero.default_setup,
   }
 })
+
+require('lspconfig').rust_analyzer.setup {
+  -- Other Configs ...
+  settings = {
+    ["rust-analyzer"] = {
+      -- Other Settings ...
+      procMacro = {
+        ignored = {
+            leptos_macro = {
+                -- optional: --
+                -- "component",
+                "server",
+            },
+        },
+      },
+    },
+  }
+}
 
 ---
 -- Autocompletion config
