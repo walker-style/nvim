@@ -1,31 +1,47 @@
--- Bind options
-local bind = vim.keymap.set
-local remap = {remap = true}
+local keymap = vim.keymap.set
+local opts = { noremap = true, silent = true }
 
--- Leader
-vim.g.mapleader = ' '
+keymap("n", "<Space>", "", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
--- ========================================================================== --
--- ==                             KEY MAPPINGS                             == --
--- ========================================================================== --
+keymap("n", "<C-i>", "<C-i>", opts)
 
--- Basic clipboard interaction
-bind({'n', 'x', 'o'}, 'gy', '"+y')
-bind({'n', 'x', 'o'}, 'gp', '"+p')
+-- Better window navigation
+keymap("n", "<m-h>", "<C-w>h", opts)
+keymap("n", "<m-j>", "<C-w>j", opts)
+keymap("n", "<m-k>", "<C-w>k", opts)
+keymap("n", "<m-l>", "<C-w>l", opts)
+keymap("n", "<m-tab>", "<c-6>", opts)
 
--- Go to first character in line
-bind('', '<leader>h', '^')
+keymap("n", "n", "nzz", opts)
+keymap("n", "N", "Nzz", opts)
+keymap("n", "*", "*zz", opts)
+keymap("n", "#", "#zz", opts)
+keymap("n", "g*", "g*zz", opts)
+keymap("n", "g#", "g#zz", opts)
 
--- Go to last character in line
-bind('', '<leader>l', 'g_')
+-- Remove missclick 
+keymap("i", "<S-Down>", "<Nop>", opts)
+keymap("i", "<S-Up>", "<Nop>", opts)
 
--- Scroll half page and center
-bind('n', '<M-k>', '<C-u>M')
-bind('n', '<M-j>', '<C-d>M')
 
--- Search will center on the line it's found in
-bind('n', 'n', 'nzzzv')
-bind('n', 'N', 'Nzzzv')
-bind('n', '#', '#zz')
-bind('n', '*', '*zz')
 
+-- Stay in indent mode
+keymap("v", "<", "<gv", opts)
+keymap("v", ">", ">gv", opts)
+
+vim.cmd [[:amenu 10.100 mousemenu.Goto\ Definition <cmd>lua vim.lsp.buf.definition()<CR>]]
+vim.cmd [[:amenu 10.110 mousemenu.References <cmd>lua vim.lsp.buf.references()<CR>]]
+-- vim.cmd [[:amenu 10.120 mousemenu.-sep- *]]
+
+vim.keymap.set("n", "<RightMouse>", "<cmd>:popup mousemenu<CR>")
+vim.keymap.set("n", "<Tab>", "<cmd>:popup mousemenu<CR>")
+
+-- tailwind bearable to work with
+keymap({ "n", "x" }, "j", "gj", opts)
+keymap({ "n", "x" }, "k", "gk", opts)
+keymap("n", "<leader>w", ":lua vim.wo.wrap = not vim.wo.wrap<CR>", opts)
+
+
+vim.api.nvim_set_keymap('t', '<C-;>', '<C-\\><C-n>', opts)
