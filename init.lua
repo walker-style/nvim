@@ -4,4 +4,7 @@ require ("user/keymaps")
 spec ("user/devicons")
 spec ("user/treesitter")
 spec ("user/mason")
+spec "user/schemastore"
+spec "user/whichkey"
+spec "user/lspconfig"
 require ("user/lazy")
