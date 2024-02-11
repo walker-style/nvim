@@ -1,7 +1,7 @@
 require ("user/lker")
 require ("user/options")
 require ("user/keymaps")
-spec ("user/devicons")
+-- require ("user/devicons") -- manage with nixos
 spec ("user/treesitter")
 -- spec ("user/mason") -- doesn't play nice with nixos
 spec "user/schemastore"
