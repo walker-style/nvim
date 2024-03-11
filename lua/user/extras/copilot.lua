@@ -39,6 +39,7 @@
        cvs = false,
        lua = true,
        nix = true,
+       tsx = true,
        ["."] = false,
      },
      copilot_node_command = "node",
